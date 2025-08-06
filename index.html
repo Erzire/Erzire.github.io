@@ -80,7 +80,7 @@
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
-
+        
         <section id="hero" class="text-center py-20 section-fade-in">
             <h2 class="text-4xl md:text-6xl font-extrabold text-slate-800 leading-tight">Robert B. Rosario</h2>
             <p class="mt-4 text-lg md:text-2xl text-amber-600 font-semibold">Embedded Systems Engineer & Audio Hardware PCB Designer</p>
@@ -115,7 +115,7 @@
                             <li>Developing C++ firmware using DaisySP/libDaisy to process user inputs, manage voice allocation, and generate audio waveforms.</li>
                         </ul>
                     </div>
-<img src="https://i.imgur.com/ifRDhy0.png" alt="NepTune Synthesizer Project" class="w-full h-64 md:h-80 rounded-lg object-cover shadow-lg">
+                    <img src="https://i.imgur.com/ifRDhy0.png" alt="NepTune Synthesizer Project" class="w-full h-auto max-h-96 rounded-lg object-contain shadow-lg">
                 </div>
 
                 <div id="project2" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -145,7 +145,7 @@
                         <p>CRT Monitor Repair<br>Photo</p>
                     </div>
                 </div>
-
+                
                 <div id="project4" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div>
                         <h4 class="text-2xl font-bold text-slate-800 mb-2">Nintendo Gameboy Advance SP Modification</h4>
@@ -226,7 +226,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="education" class="py-16 section-fade-in">
             <h3 class="text-3xl font-bold text-slate-800 border-b-4 border-amber-500 pb-2 mb-6">Education</h3>
             <div class="bg-white p-6 rounded-lg shadow">
@@ -254,7 +254,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-
+            
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
@@ -280,7 +280,7 @@
                     });
                 });
             });
-
+            
             const sections = document.querySelectorAll('.section-fade-in');
             const navLinks = document.querySelectorAll('.nav-link');
 
@@ -294,10 +294,10 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-
+                        
                         const currentId = entry.target.id;
                         let activeLink = document.querySelector(`.nav-link[href="#${currentId}"]`);
-
+                        
                         navLinks.forEach(link => link.classList.remove('active'));
                         if(activeLink) {
                             activeLink.classList.add('active');
