@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
     <title>Robert Rosario | Embedded Engineering & PCB Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,15 +40,16 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .project-image-placeholder {
-            background-color: #e2e8f0; /* slate-200 */
-            border: 2px dashed #94a3b8; /* slate-400 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b; /* slate-500 */
-            font-size: 0.875rem;
-            text-align: center;
+        #image-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .gallery-image {
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .gallery-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -60,7 +61,9 @@
             <div class="hidden md:flex space-x-6">
                 <a href="#about" class="nav-link px-2 py-1">About</a>
                 <a href="#projects" class="nav-link px-2 py-1">Projects</a>
-                <a href="#skills" class="nav-link px-2 py-1">Skills</a>
+                <a href="#skills" class="nav-link px-2 py-1">Interests</a>
+                <a href="#music" class="nav-link px-2 py-1">Music</a>
+                <a href="#photography" class="nav-link px-2 py-1">Photography</a>
                 <a href="#experience" class="nav-link px-2 py-1">Experience</a>
                 <a href="#contact" class="nav-link px-2 py-1">Contact</a>
             </div>
@@ -74,6 +77,9 @@
             <a href="#about" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">About</a>
             <a href="#projects" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">Projects</a>
             <a href="#skills" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">Skills</a>
+            <a href="#interests" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">Interests</a>
+            <a href="#music" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">Music</a>
+            <a href="#photography" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">Photography</a>
             <a href="#experience" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">Experience</a>
             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-slate-700 rounded">Contact</a>
         </div>
@@ -84,13 +90,21 @@
         <section id="hero" class="text-center py-20 section-fade-in">
             <h2 class="text-4xl md:text-6xl font-extrabold text-slate-800 leading-tight">Robert B. Rosario</h2>
             <p class="mt-4 text-lg md:text-2xl text-amber-600 font-semibold">Embedded Systems Engineer & Audio Hardware PCB Designer</p>
+            <a href="https://drive.google.com/file/d/1JI5vk50OkDHug6yE4D9pmJZfcGNJvvvh/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="mt-8 inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-amber-700 transition-transform transform hover:scale-105">
+                Download Resume (PDF)
+            </a>
         </section>
 
         <section id="about" class="py-16 section-fade-in">
             <h3 class="text-3xl font-bold text-slate-800 border-b-4 border-amber-500 pb-2 mb-6">About Me</h3>
-            <p class="text-lg leading-relaxed text-slate-600">
-                Driven Electrical Engineering student specializing in embedded engineering and PCB design for audio applications. As a lifelong musician, I'm passionate about creating innovative audio hardware that sits at the intersection of art and technology. My experience is highlighted by leading a team to build a complete hybrid synthesizer from concept to prototype, a project that involved system architecture, schematic and PCB layout in KiCad, and C++ firmware development. I'm aiming to contribute my skills in hardware design and embedded systems to the development of next-generation audio products.
-            </p>
+            <div class="space-y-4 text-lg leading-relaxed text-slate-600">
+                <p>
+                    I'm an Electrical Engineering student specializing in embedded engineering and PCB design for audio applications. As a lifelong musician, I'm passionate about creating innovative audio hardware that sits at the intersection of art and technology. My experience is highlighted by leading a team to build a complete hybrid synthesizer from concept to prototype, a project that involved system architecture, schematic and PCB layout in KiCad, and C++ firmware development. I'm aiming to contribute my skills in hardware design and embedded systems to the development of next-generation audio products.
+                </p>
+                <p>
+                    A common thread through all my interests is a love for analog technologies and the freedom of manual control. Whether it's the improvisational structures of Jazz, the tactile nature of film photography, or the complete system control offered by Arch Linux, I'm drawn to understanding and tinkering with complex systems. This curiosity fuels my approach to engineering, blending methodical design with a creative drive to build something new and interesting.
+                </p>
+            </div>
         </section>
 
         <section id="projects" class="py-16 section-fade-in">
@@ -127,9 +141,7 @@
                             <li>Flashed the microcontroller with custom QMK firmware written in C to define complex keymaps and functional layers.</li>
                         </ul>
                     </div>
-                     <div class="project-image-placeholder w-full h-64 md:h-80 rounded-lg">
-                        <p>Ergonomic Keyboard<br>Photo</p>
-                    </div>
+                     <img src="https://i.imgur.com/oUPic3g.jpeg" alt="Custom Ergonomic Keyboard" class="w-full h-64 md:h-80 rounded-lg object-cover shadow-lg">
                 </div>
 
                 <div id="project3" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -141,9 +153,7 @@
                             <li>Analyzed signal outputs on an oscilloscope to validate the repair and ensure full functionality and signal integrity.</li>
                         </ul>
                     </div>
-                     <div class="project-image-placeholder w-full h-64 md:h-80 rounded-lg">
-                        <p>CRT Monitor Repair<br>Photo</p>
-                    </div>
+                     <img src="https://i.imgur.com/7AiAIaX.jpeg" alt="CRT Monitor Repair in progress" class="w-full h-64 md:h-80 rounded-lg object-cover shadow-lg">
                 </div>
                 
                 <div id="project4" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -155,9 +165,7 @@
                             <li>Executed precise SMD rework using a hot air station and soldering microscope to perform the component-level modifications.</li>
                         </ul>
                     </div>
-                     <div class="project-image-placeholder w-full h-64 md:h-80 rounded-lg">
-                        <p>GBA SP Mod<br>Photo</p>
-                    </div>
+                     <img src="https://i.imgur.com/kfwrTO0.jpeg" alt="Modified Gameboy Advance SP" class="w-full h-auto max-h-96 rounded-lg object-contain shadow-lg">
                 </div>
             </div>
         </section>
@@ -197,6 +205,61 @@
                         <span class="bg-emerald-100 text-emerald-800 text-sm font-medium px-2.5 py-0.5 rounded">3D Printing</span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="interests" class="py-16 section-fade-in">
+            <h3 class="text-3xl font-bold text-slate-800 border-b-4 border-amber-500 pb-2 mb-8">Interests</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h4 class="text-xl font-bold text-slate-700 mb-3">🎹 Music & Audio</h4>
+                    <p class="text-slate-600">A musician for over 10 years, I play piano and saxophone. I'm drawn to the improvisational nature of bebop, fusion, and modern funk, and I enjoy collecting and listening to vinyl records on my stereo system. This love for analog sound directly inspires my work in audio electronics.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h4 class="text-xl font-bold text-slate-700 mb-3">🐧 Technology & Tinkering</h4>
+                    <p class="text-slate-600">I thrive on having complete control over my tools, which is why I run an Arch-based Linux system. I enjoy the freedom to tinker with everything from the OS to setting up media servers. This hands-on approach extends to my love for analog technology, from film photography to HAM radio.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h4 class="text-xl font-bold text-slate-700 mb-3">📷 Photography</h4>
+                    <p class="text-slate-600">I shoot both digital and film. My digital work focuses on astrophotography, for which I have a dedicated telescope setup. With film, I enjoy the manual process of cataloging daily life and the little things. Both disciplines satisfy my love for technical precision and creative expression.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="music" class="py-16 section-fade-in">
+            <h3 class="text-3xl font-bold text-slate-800 border-b-4 border-amber-500 pb-2 mb-8">Music Showcase</h3>
+            <p class="text-lg text-slate-600 mb-8 max-w-3xl mx-auto text-center">Here are a few tracks I've created, showcasing some of the sounds and styles that inspire my work.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/erzire/wip2&color=%23d97706&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/erzire/everyones-here&color=%23d97706&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/erzire/weird-zone&color=%23d97706&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/erzire/bedtime-for-gremlins&color=%23d97706&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="photography" class="py-16 section-fade-in">
+            <h3 class="text-3xl font-bold text-slate-800 border-b-4 border-amber-500 pb-2 mb-8">Astrophotography Gallery</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <figure class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://i.imgur.com/TbLJ7LX.jpeg" alt="Astrophotograph of the Double Cluster" class="gallery-image w-full h-64 object-cover">
+                    <figcaption class="p-4 text-sm text-slate-600 text-center">Caldwell 14 - Double Cluster</figcaption>
+                </figure>
+                <figure class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://i.imgur.com/QjnHhHR.jpeg" alt="Astrophotograph of the Orion Nebula" class="gallery-image w-full h-64 object-cover">
+                    <figcaption class="p-4 text-sm text-slate-600 text-center">Messier 42 - Orion Nebula</figcaption>
+                </figure>
+                <figure class="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="https://i.imgur.com/6v9S2IB.jpeg" alt="Astrophotograph of the Pleiades Nebula" class="gallery-image w-full h-64 object-cover">
+                    <figcaption class="p-4 text-sm text-slate-600 text-center">Messier 45 - Pleiades</figcaption>
+                </figure>
             </div>
         </section>
 
@@ -243,12 +306,20 @@
             <h3 class="text-3xl font-bold mb-4">Get In Touch</h3>
             <p class="text-slate-300 mb-8 max-w-2xl mx-auto">I'm actively seeking internship and full-time opportunities in audio hardware engineering, embedded systems, and PCB design. Let's create something amazing together.</p>
             <div class="flex justify-center items-center gap-6">
-                <a href="mailto:Rbrosario13@gmail.com" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">[Your Email]</a>
-                <a href="https://www.linkedin.com/in/robertbrosario/" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">[Your LinkedIn]</a>
-                 <a href="#" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">[Your GitHub]</a>
+                <a href="mailto:Rbrosario13@gmail.com" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">Rbrosario13@gmail.com</a>
+                <a href="https://www.linkedin.com/in/robertbrosario/" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">https://www.linkedin.com/in/robertbrosario/</a>
+                 <a href="#" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">https://github.com/Erzire</a>
             </div>
         </div>
     </footer>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden opacity-0">
+        <div class="relative bg-white p-2 rounded-lg shadow-2xl max-w-4xl max-h-[90vh]">
+            <img id="modal-image" src="" alt="Astrophotography full-size view" class="w-auto h-auto max-w-full max-h-[85vh] rounded">
+            <button id="close-modal" class="absolute -top-4 -right-4 text-white text-4xl font-bold hover:text-amber-500 transition-colors">&times;</button>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -313,6 +384,35 @@
             if (heroSection) {
                 observer.observe(heroSection);
             }
+
+            // Image Modal Logic
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const closeModalButton = document.getElementById('close-modal');
+            const galleryImages = document.querySelectorAll('.gallery-image');
+
+            galleryImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    modalImage.src = image.src;
+                    modal.classList.remove('hidden');
+                    setTimeout(() => modal.classList.remove('opacity-0'), 10);
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modalImage.src = ''; 
+                }, 300);
+            };
+
+            closeModalButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
         });
     </script>
 </body>
