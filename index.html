@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robert Rosario | Embedded Engineering & PCB Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,6 +50,9 @@
         .gallery-image:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .carousel-dot.active {
+            background-color: #d97706;
         }
     </style>
 </head>
@@ -129,7 +132,17 @@
                             <li>Developing C++ firmware using DaisySP/libDaisy to process user inputs, manage voice allocation, and generate audio waveforms.</li>
                         </ul>
                     </div>
-                    <img src="https://i.imgur.com/ifRDhy0.png" alt="NepTune Synthesizer Project" class="w-full h-auto max-h-96 rounded-lg object-contain shadow-lg">
+                    <div id="neptune-carousel" class="relative w-full h-auto max-h-96">
+                        <div class="relative h-96 bg-slate-100 rounded-lg shadow-inner flex items-center justify-center">
+                            <img data-index="0" src="https://i.imgur.com/ifRDhy0.png" alt="NepTune Synthesizer 3D Render" class="carousel-image w-full h-full rounded-lg object-contain">
+                            <img data-index="1" src="https://i.imgur.com/OGAFquP.jpeg" alt="NepTune VCA, Envelope, and Mixer PCB Layout" class="carousel-image w-full h-full rounded-lg object-contain hidden">
+                            <img data-index="2" src="https://i.imgur.com/7fkL32v.jpeg" alt="NepTune Hardware Block Diagram" class="carousel-image w-full h-full rounded-lg object-contain hidden">
+                        </div>
+                        <button class="carousel-prev absolute top-1/2 left-2 -translate-y-1/2 bg-slate-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition">&lt;</button>
+                        <button class="carousel-next absolute top-1/2 right-2 -translate-y-1/2 bg-slate-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition">&gt;</button>
+                        <div class="carousel-dots absolute -bottom-8 left-1/2 -translate-x-1/2 flex space-x-2"></div>
+                        <div id="carousel-caption" class="text-center text-sm text-slate-500 mt-2"></div>
+                    </div>
                 </div>
 
                 <div id="project2" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -306,9 +319,9 @@
             <h3 class="text-3xl font-bold mb-4">Get In Touch</h3>
             <p class="text-slate-300 mb-8 max-w-2xl mx-auto">I'm actively seeking internship and full-time opportunities in audio hardware engineering, embedded systems, and PCB design. Let's create something amazing together.</p>
             <div class="flex justify-center items-center gap-6">
-                <a href="mailto:Rbrosario13@gmail.com" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">Rbrosario13@gmail.com</a>
-                <a href="https://www.linkedin.com/in/robertbrosario/" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">https://www.linkedin.com/in/robertbrosario/</a>
-                 <a href="#" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">https://github.com/Erzire</a>
+                <a href="mailto:Rbrosario13@gmail.com" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">[Your Email]</a>
+                <a href="https://www.linkedin.com/in/robertbrosario/" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">[Your LinkedIn]</a>
+                 <a href="#" class="text-amber-500 hover:text-amber-400 transition-colors text-lg">[Your GitHub]</a>
             </div>
         </div>
     </footer>
@@ -413,6 +426,56 @@
                     closeModal();
                 }
             });
+
+            // Carousel Logic
+            const carousel = document.getElementById('neptune-carousel');
+            const images = carousel.querySelectorAll('.carousel-image');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            const caption = document.getElementById('carousel-caption');
+            const captions = [
+                "Figure 1: 3D Concept Render",
+                "Figure 2: VCA, Envelope Generator, and Mixer PCB",
+                "Figure 3: Hardware Block Diagram"
+            ];
+            let currentIndex = 0;
+
+            function showImage(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('hidden', i !== index);
+                });
+                caption.textContent = captions[index];
+                updateDots(index);
+                currentIndex = index;
+            }
+
+            function updateDots(index) {
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                    dot.classList.toggle('bg-slate-400', i !== index);
+                });
+            }
+
+            images.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot', 'w-3', 'h-3', 'rounded-full', 'bg-slate-400', 'transition');
+                dot.addEventListener('click', () => showImage(i));
+                dotsContainer.appendChild(dot);
+            });
+            
+            prevButton.addEventListener('click', () => {
+                const newIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(newIndex);
+            });
+
+            nextButton.addEventListener('click', () => {
+                const newIndex = (currentIndex + 1) % images.length;
+                showImage(newIndex);
+            });
+
+            showImage(0);
         });
     </script>
 </body>
